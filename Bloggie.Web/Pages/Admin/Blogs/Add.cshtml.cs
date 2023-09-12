@@ -21,7 +21,7 @@ namespace Bloggie.Web.Pages.Admin.Blogs
         {
         }
 
-        public IActionResult OnPost() 
+        public async Task<IActionResult> OnPost() 
         {
             var blogPost = new BlogPost()
             {
@@ -36,8 +36,8 @@ namespace Bloggie.Web.Pages.Admin.Blogs
                 Visible = AddBlogPostRequest.Visible,
             };
 
-            _BloggieDbContext.BlogPosts.Add(blogPost);
-            _BloggieDbContext.SaveChanges();
+            await _BloggieDbContext.BlogPosts.AddAsync(blogPost);
+            await _BloggieDbContext.SaveChangesAsync();
 
             return RedirectToPage("/Admin/Blogs/List");
         }

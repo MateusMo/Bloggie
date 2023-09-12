@@ -2,6 +2,7 @@ using Bloggie.Web.Data;
 using Bloggie.Web.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bloggie.Web.Pages.Admin.Blogs
 {
@@ -14,15 +15,15 @@ namespace Bloggie.Web.Pages.Admin.Blogs
         {
             _BloggieDbContext = BloggieDbContext;
         }
-        public void OnGet(Guid id)
+        public async Task OnGet(Guid id)
         {
-            BlogPost = _BloggieDbContext.BlogPosts.FirstOrDefault(x => x.Id == id);
+            BlogPost = await _BloggieDbContext.BlogPosts.FirstOrDefaultAsync(x => x.Id == id);
             
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostEdit()
         {
-            var existingBlogPost = _BloggieDbContext.BlogPosts.FirstOrDefault(x => x.Id == BlogPost.Id);
+            var existingBlogPost = await _BloggieDbContext.BlogPosts.FirstOrDefaultAsync(x => x.Id == BlogPost.Id);
             if (existingBlogPost != null)
             {
                 existingBlogPost.Heading = BlogPost.Heading;
@@ -36,10 +37,24 @@ namespace Bloggie.Web.Pages.Admin.Blogs
                 existingBlogPost.Visible = BlogPost.Visible;
 
                 _BloggieDbContext.Update(existingBlogPost);
-                _BloggieDbContext.SaveChanges();
+                await _BloggieDbContext.SaveChangesAsync();
             }
 
             return RedirectToPage("/Admin/Blogs/List");
         }
+        
+        public async Task<IActionResult> OnPostDelete()
+        {
+            var existingBlogPost = await _BloggieDbContext.BlogPosts.FirstOrDefaultAsync(x => x.Id == BlogPost.Id);
+            if(existingBlogPost != null)
+            {
+                _BloggieDbContext.Remove(existingBlogPost);
+                await _BloggieDbContext.SaveChangesAsync();
+            }
+         
+            return RedirectToPage("/Admin/Blogs/List");
+        }
+
+
     }
 }
