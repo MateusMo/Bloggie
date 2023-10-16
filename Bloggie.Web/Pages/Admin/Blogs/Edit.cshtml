@@ -9,7 +9,9 @@
     </div>
 </div>
 
-@if(Model.BlogPost != null)
+<partial name="_Notification">
+
+@if (Model.BlogPost != null)
 {
     <div>
         <div class="container">
@@ -75,7 +77,8 @@
         </div>
     </div>
 
-} else 
+}
+else
 {
     <div class="container">
         <p>Blog Post Not Found</p>
