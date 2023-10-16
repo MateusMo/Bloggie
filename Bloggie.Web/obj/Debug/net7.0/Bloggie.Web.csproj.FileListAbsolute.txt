@@ -73,3 +73,5 @@ C:\PersonalProjects\Bloggie\Bloggie.Web\obj\Debug\net7.0\refint\Bloggie.Web.dll
 C:\PersonalProjects\Bloggie\Bloggie.Web\obj\Debug\net7.0\Bloggie.Web.pdb
 C:\PersonalProjects\Bloggie\Bloggie.Web\obj\Debug\net7.0\Bloggie.Web.genruntimeconfig.cache
 C:\PersonalProjects\Bloggie\Bloggie.Web\obj\Debug\net7.0\ref\Bloggie.Web.dll
+C:\PersonalProjects\Bloggie\Bloggie.Web\bin\Debug\net7.0\CloudinaryDotNet.dll
+C:\PersonalProjects\Bloggie\Bloggie.Web\bin\Debug\net7.0\Newtonsoft.Json.dll

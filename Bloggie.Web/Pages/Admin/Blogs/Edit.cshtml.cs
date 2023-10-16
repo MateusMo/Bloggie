@@ -44,7 +44,7 @@ namespace Bloggie.Web.Pages.Admin.Blogs
             }
             
 
-            return Page();
+            return RedirectToPage("/Admin/Blogs/List");
         }
         
         public async Task<IActionResult> OnPostDelete()
